@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-
 app.use(express.json());
 
 // Test Route
@@ -21,11 +20,15 @@ app.get("/", (req, res) => {
   });
 });
 
+// API Routes
 app.use("/api", generateRoute);
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Start Server Locally
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
 
+// Export Express App
 module.exports = app;
